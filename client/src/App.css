@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#footer{
+    background-color: rgb(72, 87, 86);
+    padding: 90px;
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#outlet{
+    margin: 50px;
+}
+
+#from{
+    width: 500px;
+    margin: auto;
+}
