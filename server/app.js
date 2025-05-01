@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const AdminRoute = require("./Routes/adminRoute");
+const UserRoute = require("./Routes/UserRoute");
 
 
 app.use(cors());
@@ -19,6 +20,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/TaskManagmentSystem").then(()=>{
 });
 
 app.use("/admin", AdminRoute)
+app.use("/user", UserRoute);
 
 
 app.listen(8000,()=>{

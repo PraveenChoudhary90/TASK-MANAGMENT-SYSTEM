@@ -1,7 +1,37 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 function Userlogin() {
+
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
+
+  const handelInput = (e)=>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setInput(values=>({...values, [name]:value}));
+    console.log(input);
+  }
+
+const HandelSubmit =async (e)=>{
+  e.preventDefault();
+  const api = "http://localhost:8000/user/userlogin";
+  try {
+    const response = await axios.post(api, input);
+    console.log(response.data);
+    alert(response.data.msg);
+    navigate("/userdashboard")
+  } catch (error) {
+    alert(error.response.data.msg);
+  }
+
+}
+
+
+
+
   return (
     <>
     <div id="from">
@@ -9,14 +39,14 @@ function Userlogin() {
      <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control type="email" placeholder="Enter email" name='email' value={input.email} onChange={handelInput} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" placeholder="Password" name='password' value={input.password} onChange={handelInput} />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={HandelSubmit}>
         Submit
       </Button>
     </Form>

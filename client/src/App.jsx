@@ -10,6 +10,7 @@ import AdminDashboard from './Admin/AdminDashboard'
 import AddUser from './Admin/AddUser'
 import DisplayUser from './Admin/DisplayUser'
 import UpdateTask from './Admin/UpdateTask'
+import UserDashboard from './User/UserDashboard'
 
 function App() {
  
@@ -33,8 +34,13 @@ function App() {
     <Route path='registration' element={<AddUser/>}/>
     <Route path='userdisplay' element={<DisplayUser/>}/>
     <Route path='taskdisplay' element={<UpdateTask/>}/>  
-    </Route>
+    </Route> 
+   </Routes>
+
+   <Routes>
+    <Route path='userdashboard' element={<UserDashboard/>}>
     
+    </Route>
    </Routes>
    </BrowserRouter>
     </>
