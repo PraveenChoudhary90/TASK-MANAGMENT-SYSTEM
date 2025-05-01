@@ -20,6 +20,11 @@
 #from{
     width: 500px;
     margin: auto;
+     border: 1px solid black;
+    box-shadow: 0px 0px 9px;
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color: lightpink;
 }
 
 #admin{
@@ -76,4 +81,26 @@
     background-color: lightcoral;
 
 }
+
+#table1{
+
+     width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 9px;
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color: lightcoral;
+
+}
+
+#home{
+    background-image: url("./p2.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
 

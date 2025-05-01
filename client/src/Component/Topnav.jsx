@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const Topnav = ()=>{
     return(
         <>
-         <Navbar bg="dark" data-bs-theme="dark">
+         <Navbar bg="dark" data-bs-theme="dark" style={{fontWeight:"bold"}}>
         <Container>
           <Navbar.Brand as={Link}   to="home">Task Managment System</Navbar.Brand>
           <Nav className="me-auto">

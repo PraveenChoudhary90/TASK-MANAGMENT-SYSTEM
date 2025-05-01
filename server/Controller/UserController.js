@@ -1,6 +1,7 @@
 const UserModel = require("../Model/UserModel");
 const jwt =require("jsonwebtoken");
 require("dotenv").config();
+const TaskModel = require("../Model/TaskModel")
 
 const Userlogin = async(req,res)=>{
     const {email, password}=req.body;
@@ -40,7 +41,18 @@ const UserAuthonticate = async(req,res)=>{
      }
 }
 
+
+
+const UserTaskDisplay = async(req,res)=>{
+    const Data = await TaskModel.find();
+    res.status(200).send(Data);
+}
+
+
+
+
 module.exports ={
     Userlogin,
-    UserAuthonticate
+    UserAuthonticate,
+    UserTaskDisplay
 }

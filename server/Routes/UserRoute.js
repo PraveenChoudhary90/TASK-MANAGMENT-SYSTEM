@@ -4,6 +4,7 @@ const UserController = require("../Controller/UserController");
 
 route.post("/userlogin", UserController.Userlogin);
 route.get("/userauthenticate", UserController.UserAuthonticate);
+route.get("/usertaskdisplay", UserController.UserTaskDisplay);
 
 
 
