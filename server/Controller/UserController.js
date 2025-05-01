@@ -1,7 +1,6 @@
 const UserModel = require("../Model/UserModel");
-
-
-
+const jwt =require("jsonwebtoken");
+require("dotenv").config();
 
 const Userlogin = async(req,res)=>{
     const {email, password}=req.body;
@@ -15,7 +14,8 @@ const Userlogin = async(req,res)=>{
                res.status(400).send({msg:"Invalid Password"});
    
            }
-           res.status(200).send({msg:"Your Are login Succefully", User:User});
+           const token=jwt.sign({id:User._id }, process.env.JSON_WEB_TOKEN, { expiresIn: "2d" });
+           res.status(200).send({token:token,msg:"Your Are login Succefully", User:User});
        } catch (error) {
            console.log(error);
        }
@@ -23,6 +23,24 @@ const Userlogin = async(req,res)=>{
 
 
 
+const UserAuthonticate = async(req,res)=>{
+     const { authorization } = req.headers;
+    const token = authorization.split(" ")[1];
+     try {
+        const decodedToken = jwt.verify(token,  process.env.JSON_WEB_TOKEN);
+        console.log(decodedToken.id);
+      const User = await UserModel.findById(decodedToken.id).select("-password");
+
+      console.log(User);
+
+      res.status(200).send(User);
+     
+    } catch (error) {
+         console.log(error);
+     }
+}
+
 module.exports ={
-    Userlogin
+    Userlogin,
+    UserAuthonticate
 }

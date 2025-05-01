@@ -11,6 +11,7 @@ import AddUser from './Admin/AddUser'
 import DisplayUser from './Admin/DisplayUser'
 import UpdateTask from './Admin/UpdateTask'
 import UserDashboard from './User/UserDashboard'
+import UserTaskDisplay from './User/UserTaskDisplay'
 
 function App() {
  
@@ -39,7 +40,7 @@ function App() {
 
    <Routes>
     <Route path='userdashboard' element={<UserDashboard/>}>
-    
+    <Route path='userTaskDisplay' element={<UserTaskDisplay/>}/>
     </Route>
    </Routes>
    </BrowserRouter>

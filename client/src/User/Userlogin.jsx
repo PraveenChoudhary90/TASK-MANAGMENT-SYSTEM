@@ -20,9 +20,10 @@ const HandelSubmit =async (e)=>{
   const api = "http://localhost:8000/user/userlogin";
   try {
     const response = await axios.post(api, input);
+    localStorage.setItem("token", response.data.token);
     console.log(response.data);
     alert(response.data.msg);
-    navigate("/userdashboard")
+    navigate("/")
   } catch (error) {
     alert(error.response.data.msg);
   }
