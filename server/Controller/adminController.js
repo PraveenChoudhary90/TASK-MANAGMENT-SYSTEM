@@ -67,10 +67,47 @@ const TaskDsiplay = async(req,res)=>{
 }
 
 
+const TaskDelete = async(req,res)=>{
+    const {id} =req.body;
+   const Data = await TaskModel.findByIdAndDelete(id);
+   res.status(200).send({msg:"Your Task Is Deleted Successfully"});
+}
+
+
+
+const ShowUpdateFromData = async(req,res)=>{
+    const {id} = req.body;
+    try {
+        const Taskupdate = await TaskModel.findById(id);
+        res.status(200).send(Taskupdate);
+        // console.log(Taskupdate);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+const UpdateTask = async(req,res)=>{
+    const {_id} = req.body;
+    try {
+        const Data = await TaskModel.findByIdAndUpdate(_id, req.body);
+        res.status(200).send({msg:"Your Data Is Successfully Updated"});
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+
 module.exports = {
     Adminlogin,
     UserInsert,
     UserDisplay,
     AssignTask,
-    TaskDsiplay
+    TaskDsiplay,
+    TaskDelete,
+    ShowUpdateFromData,
+    UpdateTask
 }
