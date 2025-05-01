@@ -1,11 +1,36 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 function Adminlogin() {
    
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
 
+  const handelInput = (e)=>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setInput(values=>({...values,[name]:value}))
+    console.log(input);
+  }
+  
 
+  const handelSubmit =async (e)=>{
+    e.preventDefault();
+    const api="http://localhost:8000/admin/adminlogin";
+    try {
+      const response  = await axios.post(api, input)
+      console.log(response.data);
+      localStorage.setItem("name", response.data.Admin.name);
+      localStorage.setItem("email", response.data.Admin.email); 
+      alert(response.data.msg);
+       navigate("/admindashboard");
+       
+    } catch (error) {
+      alert(error.response.data.msg);
+    }
+  }
 
 
   return (
@@ -13,13 +38,9 @@ function Adminlogin() {
     <div id="from">
     <h1>Admin Login</h1>
      <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter name</Form.Label>
-        <Form.Control type="text" placeholder="Enter name" name='name' value={input.name} onChange={handelInput} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicEmaila">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" name='email' value={input.name} onChange={handelInput} />
+        <Form.Control type="email" placeholder="Enter email" name='email' value={input.email} onChange={handelInput} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
